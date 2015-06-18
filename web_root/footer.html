@@ -1,0 +1,106 @@
+
+	</div>  <!-- /container -->
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../assets/js/jquery.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/holder.js"></script>
+    <script src="../../assets/js/jquery.validate.js"></script>
+    <script src="../../assets/js/raphael-min.js"></script>
+    <script src="../../assets/js/morris.min.js"></script>
+
+
+    <!-- my scripts -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#selectall").change(function() {
+                if (this.checked) {
+                    $("td :checkbox").prop("checked", true);
+                    $("td :checkbox").attr("checked", "checked");
+                } else {
+                    $("td :checkbox").prop("checked", false);
+                    $("td :checkbox").removeAttr("checked");
+                }
+            });
+            
+            $("#print-button").click(function() {
+                window.print();
+            });
+
+            $("#cancel-approve-button").click(function() {
+                window.location.href="index.php?p=batch_approve_members";
+            });
+
+            $("#memberform").validate();
+
+
+        });
+
+    <? 
+	echo getJavascriptTail(); ?>
+
+    new Morris.Line({
+      // ID of the element in which to draw the chart.
+      element: 'sales-today-chart-sum',
+      // Chart data records -- each entry in this array corresponds to a point on
+      // the chart.
+      data: <? printSalesForDayJSON($_REQUEST['tsd']); ?>,
+      // The name of the data record attribute that contains x-values.
+      xkey: 'time',
+      // A list of names of data record attributes that contain y-values.
+      ykeys: ['sum'],
+      // Labels for the ykeys -- will be displayed when you hover over the
+      // chart.
+      labels: ['Amount', 'sum']
+    });
+
+    new Morris.Line({
+      // ID of the element in which to draw the chart.
+      element: 'sales-today-chart',
+      // Chart data records -- each entry in this array corresponds to a point on
+      // the chart.
+      data: <? printSalesForDayJSON($_REQUEST['tsd']); ?>,
+      // The name of the data record attribute that contains x-values.
+      xkey: 'time',
+      // A list of names of data record attributes that contain y-values.
+      ykeys: ['amount'],
+      // Labels for the ykeys -- will be displayed when you hover over the
+      // chart.
+      labels: ['Amount']
+    });
+	var myV  = <?php echo json_encode($_REQUEST["page"]); ?>;
+	//First Morris Graph for Donut Graph
+	if(myV == "gst"){
+		new Morris.Donut({
+
+			element: 'graph',
+
+			data: <? printGSTvsFRE(); ?>,
+		});
+
+
+	}else if((myV == "bar")){
+		//Second Graph for Search bar Graph
+		new Morris.Bar({
+			
+			element: 'graph',
+			//Data Element that uses request to figure out what graph to render
+			data:  <? 
+					if($_REQUEST["page"]=="bar"&&$_REQUEST["dN"]!=""){
+							find($_REQUEST["dN"],$_REQUEST["Sum"]); 
+						}else{echo "'null'";}?>,
+	
+			xkey: 'Product',
+			
+			ykeys: ['value'],
+			
+			labels: ['Amount'],
+		});
+	
+	}
+    
+    </script>
+
+  </body>
+</html>

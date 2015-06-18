@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="assets/ico/favicon.png">
+
+    <title>Food Co-op Shop POS Data</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="dist/css/bootstrap.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="dist/css/morris.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="main.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top hidden-print">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.php">Food Co-op POS</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+             <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Inventory <b class="caret"></b></a>
+              <ul class="dropdown-menu">          
+                <li><a href="index.php?p=stocklevel">Manage Stock Level</a></li>
+                <li><a href="index.php?p=update_stock">Update Stock Level</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sales <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="index.php?p=sales">Sales Diagram</a></li>  
+				<li><a href="index.php?p=cafe_sales">Cafe Sales</a></li>        
+              </ul>
+            </li>
+             <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Members <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="index.php?p=update_mailchimp">Update Mailchimp list...</a></li>                
+                <li><a href="index.php?p=members_to_be_approved">Members to be approved...</a></li>
+                <li><a href="index.php?p=batch_approve_members">Batch approve members...</a></li>
+              </ul>
+            </li>
+
+
+             <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Finance <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="index.php?p=close_of_day">Closing figures</a></li>                
+                <li><a href="index.php?p=close_of_day_extra">More closing figures</a></li>                
+                <li><a href="index.php?p=finance_consignment_payouts">Consignment Payouts</a></li>                
+              </ul>
+            </li>
+						<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Graphing<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="Graphs.php?page=pie">PIE Search Graph</a></li>      			              
+                <li><a href="Graphs.php?page=bar">Amount of Products</a></li> 
+              </ul>
+            </li>		
+
+             <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="index.php?p=admin_list">Admin List</a></li>     
+				<li><a href="index.php?p=change_password">Change Password</a></li>   	
+				<li><a href="index.php?p=add_new_user">Add New User</a></li>   				
+              </ul>
+            </li>			
+			<li><a href="index.php?p=shopping">Shopping list</a></li>
+            <li><a href="index.php?p=about">About (ver. <? echo $appVersion; ?>)</a></li>
+          </ul>
+		  <ul class="nav navbar-nav navbar-right">
+			<? 
+				if($_SESSION['username']){
+			?>
+			<li><a href="#"><? echo $_SESSION['username'];?></a></li>
+			<li><a href="login.php?action=logout">Sign out</a></li>
+			<?} ?>
+		  </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+	<div class="container">
+
+
